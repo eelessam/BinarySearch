@@ -1,9 +1,9 @@
-package com.eelessam.binarySearch;
+package com.eelessam.binary.search;
 
 import org.junit.Test;
 
-import static com.eelessam.binarySearch.BinarySearchOne.binarySearch;
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static com.eelessam.binary.search.BinarySearchOne.binarySearch;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BinarySearchOneTest {
 

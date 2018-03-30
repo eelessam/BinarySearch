@@ -1,14 +1,18 @@
-package com.eelessam.binarySearch;
+package com.eelessam.binary.search;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class BinarySearchOne {
+class BinarySearchOne {
 
     private static final Integer VALUE_OUT_OF_BOUNDS = -1;
 
-    public static Integer binarySearch(Integer value, Integer[] array) {
+    private BinarySearchOne() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    static Integer binarySearch(Integer value, Integer[] array) {
         ArrayList<Integer> list = new ArrayList<>(Arrays.asList(array));
 
         if (list.isEmpty()) {
@@ -31,19 +35,12 @@ public class BinarySearchOne {
         int middleIndex = indexDiff + minIndex;
         int middleValue = list.get(middleIndex);
 
-
         if(middleValue == value) {
             return middleIndex;
-        }
-
-        if (indexDiff == 1) {
-            return handleIndexDiffOfOne(minIndex, maxIndex, value, list);
-        }
-
-        if (middleValue > value) {
-            return binarySearch(minIndex, middleIndex, value, list);
+        } else if(middleValue > value) {
+            return binarySearch(minIndex, middleIndex - 1, value, list);
         } else {
-            return binarySearch(middleIndex, maxIndex, value, list);
+            return binarySearch(middleIndex + 1, maxIndex, value, list);
         }
 
     }
@@ -51,15 +48,4 @@ public class BinarySearchOne {
     private static boolean isValueOutOfRange(Integer value, Integer minValue, Integer maxValue) {
         return value < minValue || value > maxValue;
     }
-
-    private static Integer handleIndexDiffOfOne(int minIndex, int maxIndex, int value, ArrayList<Integer> list) {
-        if (list.get(minIndex) == value) {
-            return minIndex;
-        } else if (list.get(maxIndex) == value) {
-            return maxIndex;
-        } else {
-            return VALUE_OUT_OF_BOUNDS;
-        }
-    }
-
 }
